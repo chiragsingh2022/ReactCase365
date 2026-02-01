@@ -1,0 +1,254 @@
+/* Basic layout and styles for CaseHome UI */
+
+.case-home {
+    display: flex;
+    flex-direction: column;
+    /* allow the case-home to grow and let children constrain heights */
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+/* Container that wraps the results table - make it a flex child so the .ch-results
+   inside can receive a constrained height and scroll independently */
+.results-table-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.case-main {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 20px;
+    min-height: calc(100vh - 160px);
+    /* leave room for header/nav */
+}
+
+.ch-filters-main {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    gap: 10px;
+}
+
+.ch-filter {
+    background: var(--aside-bg-color);
+    color: black;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ch-search input {
+    width: 90%;
+    padding: 8px 10px;
+    border: 1px solid #e6eef5;
+    border-radius: 6px;
+}
+
+.ch-panel {
+    margin-top: 18px
+}
+
+.ch-panel h4 {
+    margin: 0 0 8px 0
+}
+
+.ch-panel input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e6eef5;
+    border-radius: 4px;
+}
+
+.filter-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.filter-field-btn {
+    padding: 6px 8px;
+    color: black;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.12s ease, color 0.12s ease, transform 0.08s ease;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* Hover only changes the border (not the background) */
+.filter-field-btn:hover,
+.filter-field-btn:focus-visible {
+    border-color: var(--accent-700);
+    transform: translateY(-1px);
+}
+
+/* Active (selected) button keeps a fixed background and color */
+.filter-field-btn:active{
+    outline: none;
+}
+.filter-field-btn.active {
+    outline: none;
+    background: var(--accent);
+    color: var(--row-hover-text);
+    border-color: var(--accent-700);
+}
+
+/* Hovering the active button only adjusts the border slightly */
+.filter-field-btn.active:hover {
+    border-color: var(--accent);
+}
+
+/* Accessible focus: use a subtle box-shadow instead of outline to avoid a double ring when the
+   button already has a visible border (e.g., active/selected state). Keeps keyboard focus visible. */
+.filter-field-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent 72%);
+}
+
+/* When the button is active + focused, use an even subtler ring so it blends with the active border */
+.filter-field-btn.active:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent 82%);
+}
+
+
+.tag-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+}
+
+.tag {
+    padding: 8px 8px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: var(--accent);
+    color: white;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tag.active {
+    background: var(--chip-bg);
+    border-color: var(--accent-700);
+    color: var(--text);
+}
+
+@media (max-width: 900px) {
+    .tag-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    /* allow children to constrain their height (necessary for overflow on flex children) */
+    min-height: 0;
+}
+
+/* Make the results area scrollable independent of the page
+   - flex: 1 allows it to grow to fill remaining space
+   - min-height: 0 is required so overflow works correctly inside flex containers */
+.ch-results {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 8px; /* space for scrollbar */
+}
+
+/* Optional: show a subtle track/thumb for clarity */
+.ch-results::-webkit-scrollbar {
+    width: 10px;
+}
+.ch-results::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--accent) 10%, #ccc 90%);
+    border-radius: 6px;
+}
+
+.ch-tabs {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px
+}
+
+.tab {
+    cursor: pointer;
+    padding: 12px 16px;
+    background: #f3f8ff;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.tab.active {
+    background: #1d63d1;
+    color: white
+}
+
+.tab-count {
+    font-weight: 700
+}
+
+.tab-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px
+}
+
+.btn.action {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #e6eef5;
+    background: white
+}
+
+.results-header {
+    padding: 0px 0px 0px 4px;
+    /* background: #437fd3; */
+    border-radius: 8px;
+   /* color: var(--row-hover-text); */
+
+}
+
+.ch-results table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+.ch-results th,
+.ch-results td {
+    padding: 12px;
+    border-bottom: 1px solid #eef5fb;
+    text-align: left
+}
+
+.ch-results tbody tr:hover {
+    background: #067bf0;
+    cursor: pointer;
+    color: var(--row-hover-text);
+}
+
+.ch-results tr.highlight {
+    background: #f3c304
+}
+
+/* .docket { font-weight:700; background:#045992; border-radius:4px; padding:6px } */
+
+@media (max-width: 900px) {
+    .case-main {
+        grid-template-columns: 1fr
+    }
+
+    .ch-tabs {
+        flex-wrap: wrap
+    }
+}

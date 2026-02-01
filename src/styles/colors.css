@@ -1,0 +1,53 @@
+/* Global color tokens (CSS variables)
+   These variables are referenced throughout the app styles.
+   The theme is switched by setting `data-theme="light"` on the root element.
+*/
+:root {
+  /* Accent */
+  --accent: #646cff;
+  --accent-600: #5058e6;
+  --accent-700: #1d63d1;
+
+  /* Surfaces */
+  --bg: #121212;
+  --surface: #1a1a1a;
+
+  /* Text */
+  --text: rgba(255,255,255,0.9);
+  --muted: #888;
+
+  --border: #e6eef5;
+  --chip-bg: #fff8dc;
+
+  /* Semantic */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+   --row-hover-bg: #3b82f6;
+    --row-hover-text: #e5e7eb;
+    --aside-bg-color: #b6b6b6;
+}
+
+/* Light theme overrides */
+:root[data-theme='light'] {
+  --accent: #4f46e5;
+  --accent-700: #3730a3;
+
+  --bg: #ffffff;
+  --surface: #f9f9f9;
+
+  --text: #213547;
+  --muted: #6b7280;
+
+  --border: #e6eef5;
+  --chip-bg: #fff8dc;
+
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  
+   --row-hover-bg: #067bf0;
+    --row-hover-text: #ffffff;
+    --aside-bg-color: #ebe7e7;
+}
